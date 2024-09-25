@@ -21,24 +21,29 @@
             padding: 20px;
         }
 
-        .thumbnail-grid a {
+        .thumbnail-grid figure {
             display: block;
-            width: 100%;
-            padding-top: 75%; /* This creates a 4:3 aspect ratio */
             position: relative;
             overflow: hidden;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+            margin: 0;
         }
 
         .thumbnail-grid img {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .thumbnail-grid figcaption {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 10px 0;
+            font-size: 14px;
+            color: #333;
         }
 
         .center-button {
@@ -106,33 +111,60 @@
     <h3>Explore the latest stories from around the world</h3>
     
     <div class="thumbnail-grid">
-        <a href="page1.html">
-            <img src="/MazeQuizCorp/src/page1.jpg" alt="Thumbnail 1">
-        </a>
-        <a href="page2.html">
-            <img src="/MazeQuizCorp/src/page2.jpg" alt="Thumbnail 2">
-        </a>
-        <a href="page3.html">
-            <img src="/MazeQuizCorp/src/page3.jpg" alt="Thumbnail 3">
-        </a>
-        <a href="page4.html">
-            <img src="thumbnail4.jpg" alt="Thumbnail 4">
-        </a>
-        <a href="page5.html">
-            <img src="thumbnail5.jpg" alt="Thumbnail 5">
-        </a>
-        <a href="page6.html">
-            <img src="thumbnail6.jpg" alt="Thumbnail 6">
-        </a>
-        <a href="page7.html">
-            <img src="thumbnail7.jpg" alt="Thumbnail 7">
-        </a>
-        <a href="page8.html">
-            <img src="thumbnail8.jpg" alt="Thumbnail 8">
-        </a>
-        <a href="page9.html">
-            <img src="thumbnail9.jpg" alt="Thumbnail 9">
-        </a>
+        <figure>
+            <a href="page1.html">
+                <img src="/MazeQuizCorp/src/page1 thumbnail.jpg" alt="Thumbnail 1">
+            </a>
+            <figcaption>Simpson's paradox</figcaption>
+        </figure>
+        <figure>
+            <a href="page2.html">
+                <img src="/MazeQuizCorp/src/page2.jpeg" alt="Thumbnail 2">
+            </a>
+            <figcaption>The Kiss Painting by Gustav Klimt</figcaption>
+        </figure>
+        <figure>
+            <a href="page3.html">
+                <img src="/MazeQuizCorp/src/page3.jpg" alt="Thumbnail 3">
+            </a>
+            <figcaption>Accidental renaissance</figcaption>
+        </figure>
+        <figure>
+            <a href="page4.html">
+                <img src="thumbnail4.jpg" alt="Thumbnail 4">
+            </a>
+            <figcaption>Dummy caption for Thumbnail 4</figcaption>
+        </figure>
+        <figure>
+            <a href="page5.html">
+                <img src="thumbnail5.jpg" alt="Thumbnail 5">
+            </a>
+            <figcaption>Dummy caption for Thumbnail 5</figcaption>
+        </figure>
+        <figure>
+            <a href="page6.html">
+                <img src="thumbnail6.jpg" alt="Thumbnail 6">
+            </a>
+            <figcaption>Dummy caption for Thumbnail 6</figcaption>
+        </figure>
+        <figure>
+            <a href="page7.html">
+                <img src="thumbnail7.jpg" alt="Thumbnail 7">
+            </a>
+            <figcaption>Dummy caption for Thumbnail 7</figcaption>
+        </figure>
+        <figure>
+            <a href="page8.html">
+                <img src="thumbnail8.jpg" alt="Thumbnail 8">
+            </a>
+            <figcaption>Dummy caption for Thumbnail 8</figcaption>
+        </figure>
+        <figure>
+            <a href="page9.html">
+                <img src="thumbnail9.jpg" alt="Thumbnail 9">
+            </a>
+            <figcaption>Dummy caption for Thumbnail 9</figcaption>
+        </figure>
     </div>
     
     <br /><br />
