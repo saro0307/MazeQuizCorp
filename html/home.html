@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze quiz corp</title>
+    <title>Maze Quiz Corp</title>
     <style>
+        body {
+            background-color: #121212; /* Default to dark theme */
+            color: #e0e0e0; /* Dark theme text color */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+        }
+
+        /* Light theme styles */
+        body.light {
+            background-color: #ffffff; /* Light theme background */
+            color: #333; /* Light theme text color */
+        }
+
         h1 {
             text-align: center;
             font-family: Georgia, serif;
@@ -27,9 +39,17 @@
             position: relative;
             overflow: hidden;
             border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Improved visibility */
             cursor: pointer;
             margin: 0;
+            background-color: #1e1e1e; /* Dark theme figure background */
+            transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+        }
+
+        /* Light theme for figure */
+        body.light .thumbnail-grid figure {
+            background-color: #ffffff; /* Light theme figure background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .thumbnail-grid img {
@@ -44,7 +64,12 @@
             font-family: Arial, sans-serif;
             padding: 10px 0;
             font-size: 14px;
-            color: #333;
+            color: #e0e0e0; /* Dark theme caption color */
+        }
+
+        /* Light theme for figcaption */
+        body.light .thumbnail-grid figcaption {
+            color: #333; /* Light theme caption color */
         }
 
         #button-container {
@@ -78,24 +103,24 @@
             -webkit-user-select: none;
             vertical-align: middle;
             white-space: nowrap;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
         }
 
-        .button-50:focus {
-            text-decoration: none;
+        /* Purple button styles for dark mode */
+        body.dark .button-50 {
+            background-color: #8a2be2; /* Purple background */
+            color: #fff; /* White text color */
         }
 
-        .button-50:hover {
-            text-decoration: none;
+        /* Light theme for buttons */
+        body.light .button-50 {
+            background-color: #000; /* Change button color in light mode */
+            color: #fff; /* Light theme button text color */
         }
 
-        .button-50:active {
-            box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
-            outline: 0;
-        }
-
-        .button-50:not([disabled]):active {
-            box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
-            transform: translate(2px, 2px);
+        /* Dark theme hover effect */
+        .button-50:focus, .button-50:hover, .button-50:active {
+            box-shadow: #000 4px 4px 0 0, #fff 4px 4px 0 1px;
         }
 
         @media (min-width: 768px) {
@@ -107,12 +132,39 @@
         .more-content {
             display: none;
         }
+
+        /* Theme toggle button styles */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 10px;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+        }
+
+        body.light #theme-toggle {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        /* Improved grid visibility */
+        .thumbnail-grid figure:hover {
+            box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2); /* Hover effect */
+        }
     </style>
 </head>
-<body>
-    <h1>Maze quiz corp</h1>
+<body class="dark"> <!-- Set default theme to dark -->
+    <button id="theme-toggle" onclick="toggleTheme()">🌞</button> <!-- Updated theme toggle button -->
+    
+    <h1>Maze Quiz Corp</h1>
     <hr>
-    <h3>Explore the latest stories from around the world</h3>
+    <h3>Explore fun trivia & the latest stories from around the world</h3>
     
     <div class="thumbnail-grid">
         <figure>
@@ -125,13 +177,13 @@
             <a href="page2.html">
                 <img src="/MazeQuizCorp/src/page2 thumbnail.jpeg" alt="Thumbnail 2">
             </a>
-            <figcaption>Movies and paintings</figcaption>
+            <figcaption>Movies and Paintings</figcaption>
         </figure>
         <figure>
             <a href="https://medium.com/@Mazequizzing/accidental-renascence-f08bd2b8cbd1">
                 <img src="/MazeQuizCorp/src/page3 thumbnail.jpg" alt="Thumbnail 3">
             </a>            
-            <figcaption>Accidental renaissance</figcaption>
+            <figcaption>Accidental Renaissance</figcaption>
         </figure>
         <figure>
             <a href="https://medium.com/@Mazequizzing/how-a-soda-giant-became-the-6th-largest-military-power-the-unusual-rise-of-pepsi-9b456e41cf7c">
@@ -149,7 +201,7 @@
             <a href="https://medium.com/@Mazequizzing/deeply-unsettling-asymmetric-patterns-in-mathematics-optimal-packing-of-17-squares-0171a792f165">
                 <img src="/MazeQuizCorp/src/page6 thumbnail.jpg" alt="Thumbnail 6">
             </a>
-            <figcaption>Deeply unsettling asymmetric patterns in mathematics</figcaption>
+            <figcaption>Deeply Unsettling Asymmetric Patterns in Mathematics</figcaption>
         </figure>
     </div>
     
@@ -162,22 +214,22 @@
     
     <div class="thumbnail-grid more-content" id="more-content">
         <figure>
-            <a href="page7.html">
+            <a href="page7.html" target="_blank">
                 <img src="/MazeQuizCorp/src/page7 thumbnail.jpg" alt="Thumbnail 7">
             </a>
-            <figcaption>The Simpson's paradox</figcaption>
+            <figcaption>The Simpson's Paradox</figcaption>
         </figure>
         <figure>
-            <a href="page8.html">
-                <img src="/MazeQuizCorp/src/page8 thumbnail.png" alt="Thumbnail 8">
+            <a href="https://medium.com/@Mazequizzing/batman-101-how-to-become-batman-a11c4183d096" target="_blank">
+                <img src="/MazeQuizCorp/src/page8 thumbnail.jpg" alt="Thumbnail 8">
             </a>
-            <figcaption>Microsoft's genius marketing ploy</figcaption>
+            <figcaption>Batman 101</figcaption>
         </figure>
         <figure>
-            <a href="page9.html">
-                <img src="thumbnail9.jpg" alt="Thumbnail 9">
+            <a href="page9.html" target="_blank">
+                <img src="/MazeQuizCorp/src/page9 thumbnail.png" alt="Thumbnail 9">
             </a>
-            <figcaption>Dummy caption for Thumbnail 9</figcaption>
+            <figcaption>Microsoft's Genius Marketing Ploy</figcaption>
         </figure>
     </div>
 
@@ -198,6 +250,14 @@
                 showMoreButton.textContent = "Show More";
                 document.querySelector('.thumbnail-grid').after(buttonContainer);
             }
+        }
+
+        function toggleTheme() {
+            var body = document.body;
+            body.classList.toggle('light');
+            body.classList.toggle('dark');
+            var themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.textContent = body.classList.contains('dark') ? '🌞' : '🌙'; // Change icon based on theme
         }
     </script>
 </body>
