@@ -8,6 +8,7 @@
         h1 {
             text-align: center;
             font-family: Georgia, serif;
+            color: rgb(138, 43, 226);
         }
 
         h3 {
@@ -46,14 +47,13 @@
             color: #333;
         }
 
-        .button-container {
+        #button-container {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin: 20px 0;
         }
 
-        /* Button CSS */
         .button-50 {
             appearance: button;
             background-color: #000;
@@ -104,16 +104,13 @@
             }
         }
 
-        /* Hide the additional grids by default */
         .more-content {
             display: none;
         }
     </style>
 </head>
 <body>
-    <h1 style="color: rgb(138, 43, 226);">
-        Maze quiz corp
-    </h1>
+    <h1>Maze quiz corp</h1>
     <hr>
     <h3>Explore the latest stories from around the world</h3>
     
@@ -158,13 +155,11 @@
     
     <br />
 
-    <!-- Buttons to reveal more content and About Us -->
-    <div class="button-container">
+    <div id="button-container">
         <button class="button-50" id="show-more" onclick="showMore()">Show More</button>
         <button class="button-50" role="button" onclick="window.location.href='index.html';">About Us</button>
     </div>
     
-    <!-- Hidden content initially -->
     <div class="thumbnail-grid more-content" id="more-content">
         <figure>
             <a href="page7.html">
@@ -192,13 +187,16 @@
         function showMore() {
             var moreContent = document.getElementById('more-content');
             var showMoreButton = document.getElementById('show-more');
+            var buttonContainer = document.getElementById('button-container');
             
             if (moreContent.style.display === "none" || moreContent.style.display === "") {
-                moreContent.style.display = "grid"; // Show the rest of the content
-                showMoreButton.textContent = "Show Less"; // Change button text
+                moreContent.style.display = "grid";
+                showMoreButton.textContent = "Show Less";
+                moreContent.after(buttonContainer);
             } else {
-                moreContent.style.display = "none"; // Hide the content
-                showMoreButton.textContent = "Show More"; // Revert button text
+                moreContent.style.display = "none";
+                showMoreButton.textContent = "Show More";
+                document.querySelector('.thumbnail-grid').after(buttonContainer);
             }
         }
     </script>
