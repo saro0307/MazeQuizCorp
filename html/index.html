@@ -1,46 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial scale=1">
-    <title>Maze Quiz Corp Blogs </title>
-    <title>Maze Quiz Corp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Quiz Corp Blogs</title>
+    <style>
+        /* Reset some basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e; /* Dark background */
+            color: #e0e0e0; /* Light text for contrast */
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #8a2be2; /* Purple for main title */
+            text-align: center;
+            font-family: 'Georgia', serif;
+        }
+
+        h4 {
+            color: #e0e0e0;
+            font-family: 'Verdana', sans-serif;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #8a2be2;
+            margin: 20px 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 18px;
+        }
+
+        ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        ul li {
+            font-size: 18px;
+            list-style-type: circle;
+            margin: 5px 0;
+        }
+
+        a {
+            color: #8a2be2;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffdf00;
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffdf00;
+        }
+
+        /* Instagram link styling */
+        .social-link {
+            color: #3cb371;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .social-link:hover {
+            color: #00ff00;
+        }
+
+        /* Support section styling */
+        .support {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .support h4 {
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            background-color: #292929;
+            border-radius: 10px;
+        }
+
+        footer a {
+            color: #8a2be2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            color: #ffdf00;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p,
+            ul li,
+            a,
+            button {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1 style="color: rgb(138, 43, 226);">
-        Maze Quiz Corp
-    </h1>
+
+    <h1>Maze Quiz Corp</h1>
     <hr>
-    <h4>
-        Welcome to Maze Quiz Corp 
-    </h4>
-    <p>
-        This is a non-profit organization that promots to spread Education among the underprevilaged youths.
-    </p>
-    <div>What we do ?</div>
+
+    <h3>Welcome to Maze Quiz Corp</h3>
+    
+    <p>This is a non-profit organization that promotes spreading education among underprivileged youths.</p>
+
+    <div><strong><h3>What we do?</h3></strong></div>
     <ul>
-        <li>Quiz</li>
-        <li>Coding</li>
+        <li>Quiz Competitions</li>
+        <li>Coding Classes</li>
     </ul>
-    <span><a href="quiz.html">Quiz</a></span>
-    <span><a href="contact.html"> Contact us</a></span>
-    <br> <br>
-    <div> Visit Maze Quizzing <a style="color: darkolivegreen;"
-            href="https://www.instagram.com/mazequizcorp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw"
-            target="_blank">Instagram</a></div>
-    <h4>Support Us</h4>
+
     <div>
-        You can help us with small contributions. Thankyou!
-    </div> <br><br />
-    <div>
-        <button onclick="window.location.href= 'home.html'; window.close();"> Back to homepage</button><br /><br />
+        <span><a href="quiz.html">Take a Quiz</a></span> | 
+        <span><a href="contact.html">Contact Us</a></span>
     </div>
-        <a href="https://buymeacoffee.com/saro0307" target="_blank">Donate </a>
-    </div><br />
-    <hr>
-    <p><a style="color: darkolivegreen;" href= "https://bento.me/saravana-kumar" target="_blank">&copy; Barry Allen 2024</a><p></p>
+
+    <div>
+        <strong>Visit Maze Quizzing on:</strong> <a class="social-link"
+            href="https://www.instagram.com/mazequizcorp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw"
+            target="_blank">Instagram</a>
+    </div>
+
+    <div class="support">
+        <h4>Support Us</h4>
+        <p>You can help us with small contributions. Thank you!</p>
+        <a href="https://buymeacoffee.com/saro0307" target="_blank">Donate Now</a>
+    </div>
+
+    <div>
+        <button onclick="window.location.href= 'home.html'; window.close();">Back to homepage</button>
+    </div>
+
+    <footer>
+        <p><a href="https://bento.me/saravana-kumar" target="_blank">&copy; Barry Allen 2024</a></p>
+    </footer>
+
 </body>
 
 </html>
