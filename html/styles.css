@@ -57,3 +57,57 @@ body {
 .contact-form button:hover {
     background-color: #4cae4c;
 }
+
+/* styles.css */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center; /* Centered title */
+    color: #e0e0e0; /* Soft light text */
+    font-weight: 600;
+    margin-top: 20px; /* Added margin for spacing */
+}
+
+.content {
+    background-color: #1e1e1e; /* Darker background for content area */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+}
+
+p {
+    line-height: 1.7;
+    margin: 15px 0;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.button-50 {
+    appearance: button;
+    background-color: #8a2be2; /* Purple background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 4px;
+    box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 40px;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+}
+
+.button-50:hover {
+    background-color: #7b1fa2; /* Darker on hover */
+    transform: translateY(-2px);
+}
