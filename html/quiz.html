@@ -6,11 +6,43 @@
     <title>Book a Quiz</title> <!-- Updated page title -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        /* Add some CSS to position the heading */
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+        }
+        /* Style for button container */
+        #button-container {
+            margin-top: 20px; /* Add margin for spacing */
+        }
+        .button-50 {
+            margin-right: 10px; /* Space between buttons */
+        }
+        /* Placeholder for image */
+        .image-placeholder {
+            height: 300px; /* Adjust height as needed for the image */
+            background-color: #e0e0e0; /* Light gray background for visibility */
+            margin-bottom: 20px; /* Space below the image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px; /* Placeholder text size */
+            color: #888; /* Placeholder text color */
+        }
+    </style>
 </head>
 <body class="dark">
+    <div class="header">Book a Quiz</div> <!-- Added heading in the top corner -->
     <hr>
-    <h2 style="text-align: center;">Book a Quiz</h2>
     <main>
+        <div class="image-placeholder">
+            <img src="" alt="Backdrop">
+        </div>
         <div class="content">
             <p>
                 The origin of the word "Quiz" has two intriguing versions. One suggests that:
@@ -27,6 +59,7 @@
         </div>
         <div id="button-container">
             <button class="button-50" onclick="window.location.href='index.html';">Back to Mashhead</button>
+            <button class="button-50" onclick="window.location.href='contact.html';">Book a Quiz</button> <!-- New button added -->
         </div>
     </main>
 </body>
