@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Quiz Corp - PDF Previews</title>
+
+    <!-- Link to Google Font "Playfair Display" for The Washington Post style -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
+
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header section */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #1e1e1e;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: rgb(138, 43, 226);
+            margin: 0;
+        }
+
+        h3 {
+            font-family: 'Verdana', sans-serif;
+            font-weight: 400;
+            color: #ccc;
+            margin-top: 10px;
+        }
+
+        /* Grid layout for PDFs */
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two by two grid */
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pdf-item {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-item img {
+            width: 100%;
+            aspect-ratio: 4 / 5; /* Set aspect ratio to 4:5 */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .pdf-item h2 {
+            color: #e0e0e0;
+            font-size: 24px;
+            margin: 20px 0 10px;
+        }
+
+        .pdf-item button {
+            margin-top: 20px;
+        }
+
+        /* Button styling */
+        .button-50 {
+            appearance: button;
+            background-color: #8a2be2;
+            border: 1px solid #8a2be2;
+            border-radius: 4px;
+            box-shadow: #fff 4px 4px 0 0, #8a2be2 4px 4px 0 1px;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 12px 40px;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button-50:focus, .button-50:hover, .button-50:active {
+            box-shadow: #8a2be2 4px 4px 0 0, #fff 4px 4px 0 1px;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            .pdf-grid {
+                grid-template-columns: 1fr; /* Stacks in one column on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Maze Quiz Corp</h1>
+        <h3>Explore fun trivia & the latest stories from around the world</h3>
+    </header>
+
+    <div class="pdf-grid">
+        <!-- PDF Item 1 -->
+        <div class="pdf-item">
+            <h2>Sample PDF 1</h2>
+            <a href="/MazeQuizCorp/src/magazine/magazine pdf/my_resume CTS.pdf" target="_blank">
+                <img src="/MazeQuizCorp/src/magazine/thumbnails/ana-de-armas.jpg" alt="PDF 1 Thumbnail">
+            </a>
+            <button class="button-50" onclick="downloadPDF('path/to/sample1.pdf')">Download PDF</button>
+        </div>
+
+        <!-- PDF Item 2 -->
+        <div class="pdf-item">
+            <h2>Sample PDF 2</h2>
+            <a href="/MazeQuizCorp/src/magazine/magazine pdf/my_resume CTS.pdf" target="_blank">
+                <img src="/MazeQuizCorp/src/magazine/thumbnails/ana-de-armas.jpg" alt="PDF 2 Thumbnail">
+            </a>
+            <button class="button-50" onclick="downloadPDF('path/to/sample2.pdf')">Download PDF</button>
+        </div>
+
+        <!-- PDF Item 3 -->
+        <div class="pdf-item">
+            <h2>Sample PDF 3</h2>
+            <a href="/MazeQuizCorp/src/magazine/magazine pdf/my_resume CTS.pdf" target="_blank">
+                <img src="/MazeQuizCorp/src/magazine/thumbnails/ana-de-armas 1.jpg" alt="PDF 3 Thumbnail">
+            </a>
+            <button class="button-50" onclick="downloadPDF('path/to/sample3.pdf')">Download PDF</button>
+        </div>
+
+        <!-- PDF Item 4 -->
+        <div class="pdf-item">
+            <h2>Sample PDF 4</h2>
+            <a href="/MazeQuizCorp/src/magazine/magazine pdf/my_resume CTS.pdf" target="_blank">
+                <img src="/MazeQuizCorp/src/magazine/thumbnails/ana-de-armas 1.jpg" alt="PDF 4 Thumbnail">
+            </a>
+            <button class="button-50" onclick="downloadPDF('path/to/sample4.pdf')">Download PDF</button>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF(pdfPath) {
+            const link = document.createElement('a');
+            link.href = pdfPath;
+            link.download = pdfPath.split('/').pop();
+            link.click();
+        }
+    </script>
+</body>
+</html>
