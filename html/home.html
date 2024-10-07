@@ -10,18 +10,12 @@
 
     <style>
         body {
-            background-color: #121212; /* Default to dark theme */
+            background-color: #121212; /* Dark theme */
             color: #e0e0e0; /* Dark theme text color */
             transition: background-color 0.3s, color 0.3s; /* Smooth transition */
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-        }
-
-        /* Light theme styles */
-        body.light {
-            background-color: #f0f0f0; /* Light theme background */
-            color: #333; /* Light theme text color */
         }
 
         /* Header section */
@@ -31,14 +25,10 @@
             background-color: #1e1e1e;
         }
 
-        body.light header {
-            background-color: #fff;
-        }
-
         h1 {
             font-family: 'Playfair Display', serif; /* Washington Post font style */
             font-size: 48px;
-            color: rgb(138, 43, 226);
+            color: rgb(138, 43, 226); /* Purple color for heading */
             margin: 0;
         }
 
@@ -67,11 +57,6 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        body.light .thumbnail-grid figure {
-            background-color: #fff;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
         .thumbnail-grid figure:hover {
             transform: translateY(-10px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -91,10 +76,6 @@
             color: #e0e0e0;
         }
 
-        body.light .thumbnail-grid figcaption {
-            color: #333;
-        }
-
         /* Button container */
         #button-container {
             display: flex;
@@ -107,10 +88,10 @@
 
         .button-50 {
             appearance: button;
-            background-color: #000;
-            border: 1px solid #000;
+            background-color: #8a2be2; /* Purple button */
+            border: 1px solid #8a2be2;
             border-radius: 4px;
-            box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+            box-shadow: #fff 4px 4px 0 0, #8a2be2 4px 4px 0 1px;
             box-sizing: border-box;
             color: #fff;
             cursor: pointer;
@@ -122,19 +103,8 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        body.dark .button-50 {
-            background-color: #8a2be2;
-            color: #fff;
-        }
-
-        body.light .button-50 {
-            background-color: #000;
-            color: #fff;
-        }
-
-        /* Button hover effect */
         .button-50:focus, .button-50:hover, .button-50:active {
-            box-shadow: #000 4px 4px 0 0, #fff 4px 4px 0 1px;
+            box-shadow: #8a2be2 4px 4px 0 0, #fff 4px 4px 0 1px;
         }
 
         @media (min-width: 768px) {
@@ -147,31 +117,9 @@
         .more-content {
             display: none;
         }
-
-        /* Theme toggle button */
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #333;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
-            padding: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body.light #theme-toggle {
-            background: #e0e0e0;
-            color: #333;
-        }
     </style>
 </head>
-<body class="dark">
-    <button id="theme-toggle" onclick="toggleTheme()">🌞</button>
-
+<body>
     <header>
         <h1>Maze Quiz Corp</h1>
         <h3>Explore fun trivia & the latest stories from around the world</h3>
@@ -233,7 +181,7 @@
             <a href="page9.html" target="_blank">
                 <img src="/MazeQuizCorp/src/page9 thumbnail.png" alt="Thumbnail 9">
             </a>
-            <figcaption>The Puzzle of Eternity</figcaption>
+            <figcaption>Microsoft's Genius marketing ploy</figcaption>
         </figure>
     </div>
 
@@ -257,15 +205,6 @@
                 moreContent.style.display = 'none';
                 button.textContent = 'Show More';
             }
-        }
-
-        // Theme toggle functionality
-        function toggleTheme() {
-            var body = document.body;
-            body.classList.toggle('light');
-            body.classList.toggle('dark');
-            var themeToggleButton = document.getElementById('theme-toggle');
-            themeToggleButton.textContent = body.classList.contains('light') ? '🌜' : '🌞';
         }
     </script>
 </body>
