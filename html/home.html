@@ -10,12 +10,15 @@
 
     <style>
         body {
-            background-color: #121212; /* Dark theme */
-            color: #e0e0e0; /* Dark theme text color */
-            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+            background-color: #121212;
+            color: #e0e0e0;
+            transition: background-color 0.3s, color 0.3s;
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* Header section */
@@ -26,9 +29,9 @@
         }
 
         h1 {
-            font-family: 'Playfair Display', serif; /* Washington Post font style */
+            font-family: 'Playfair Display', serif;
             font-size: 48px;
-            color: rgb(138, 43, 226); /* Purple color for heading */
+            color: rgb(138, 43, 226);
             margin: 0;
         }
 
@@ -39,14 +42,24 @@
             margin-top: 10px;
         }
 
+        /* Main content layout */
+        .content-wrapper {
+            display: flex;
+            gap: 40px;
+            padding: 20px;
+            flex: 1;
+        }
+
         /* Grid layout */
+        .main-content {
+            flex: 0 0 70%;
+        }
+
         .thumbnail-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            padding: 20px 20px; /* Reduced padding from 40px to 20px */
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 20px 0;
         }
 
         .thumbnail-grid figure {
@@ -55,6 +68,7 @@
             overflow: hidden;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
         }
 
         .thumbnail-grid figure:hover {
@@ -66,6 +80,7 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
+            border: none;
         }
 
         .thumbnail-grid figcaption {
@@ -74,21 +89,50 @@
             font-family: 'Verdana', sans-serif;
             font-size: 16px;
             color: #e0e0e0;
+            border: none;
         }
 
-        /* Button container */
-        #button-container {
+        /* Subscription box */
+        .subscription-box {
+            flex: 0 0 25%;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .subscription-box h2 {
+            font-family: 'Playfair Display', serif;
+            color: rgb(138, 43, 226);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .subscription-box p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .subscription-form {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 10px 0; /* Reduced margin from 20px to 10px */
             flex-direction: column;
-            align-items: center;
+            gap: 15px;
         }
 
+        .subscription-form input {
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background-color: #2d2d2d;
+            color: #fff;
+        }
+
+        /* Button styles */
         .button-50 {
             appearance: button;
-            background-color: #8a2be2; /* Purple button */
+            background-color: #8a2be2;
             border: 1px solid #8a2be2;
             border-radius: 4px;
             box-shadow: #fff 4px 4px 0 0, #8a2be2 4px 4px 0 1px;
@@ -96,21 +140,31 @@
             color: #fff;
             cursor: pointer;
             font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 400;
-            padding: 12px 40px;
+            padding: 10px 30px;
             text-align: center;
             transition: background-color 0.3s, color 0.3s;
+            min-width: 120px;
+        }
+
+        /* Special styling for subscription box buttons */
+        .subscription-form .button-50 {
+            width: 100%;
+            font-size: 14px;
+            padding: 12px 40px;
         }
 
         .button-50:focus, .button-50:hover, .button-50:active {
             box-shadow: #8a2be2 4px 4px 0 0, #fff 4px 4px 0 1px;
         }
 
-        @media (min-width: 768px) {
-            .button-50 {
-                padding: 12px 50px;
-            }
+        #button-container {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin: 20px 0;
+            padding: 0;
         }
 
         /* Show More section */
@@ -119,7 +173,6 @@
         }
 
         /* Footer */
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -127,7 +180,22 @@
             color: #ccc;
             font-size: 18px;
             margin-top: 20px;
-            font-family: 'Playfair Display', serif; /* Added font family */
+            font-family: 'Playfair Display', serif;
+        }
+
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .subscription-box {
+                position: static;
+                width: auto;
+            }
+
+            .main-content {
+                flex: 1;
+            }
         }
     </style>
 </head>
@@ -137,86 +205,95 @@
         <h3>Explore fun trivia & the latest stories from around the world</h3>
     </header>
 
-    <div class="thumbnail-grid">
-        <figure>
-            <a href="page1.html">
-                <img src="/MazeQuizCorp/src/page1 thumbnail.png" alt="Thumbnail 1">
-            </a>
-            <figcaption>Tetris: Beyond the Blocks</figcaption>
-        </figure>
-        <figure>
-            <a href="page2.html">
-                <img src="/MazeQuizCorp/src/page2 thumbnail.jpeg" alt="Thumbnail 2">
-            </a>
-            <figcaption>Movies and Paintings</figcaption>
-        </figure>
-        <figure>
-            <a href="https://medium.com/@Mazequizzing/accidental-renascence-f08bd2b8cbd1">
-                <img src="/MazeQuizCorp/src/page3 thumbnail.jpg" alt="Thumbnail 3">
-            </a>
-            <figcaption>Accidental Renaissance</figcaption>
-        </figure>
-        <figure>
-            <a href="https://medium.com/@Mazequizzing/how-a-soda-giant-became-the-6th-largest-military-power-the-unusual-rise-of-pepsi-9b456e41cf7c">
-                <img src="/MazeQuizCorp/src/page4 thumbnail.jpg" alt="Thumbnail 4">
-            </a>
-            <figcaption>How a Soda Giant Became the 6th Largest Military Power</figcaption>
-        </figure>
-        <figure>
-            <a href="https://medium.com/@Mazequizzing/the-new-beginning-6651db5ba978">
-                <img src="/MazeQuizCorp/src/page5 thumbnail.jpg" alt="Thumbnail 5">
-            </a>
-            <figcaption>The Digital Metamorphosis</figcaption>
-        </figure>
-        <figure>
-            <a href="https://medium.com/@Mazequizzing/deeply-unsettling-asymmetric-patterns-in-mathematics-optimal-packing-of-17-squares-0171a792f165">
-                <img src="/MazeQuizCorp/src/page6 thumbnail.jpg" alt="Thumbnail 6">
-            </a>
-            <figcaption>Deeply Unsettling Asymmetric Patterns in Mathematics</figcaption>
-        </figure>
-    </div>
+    <div class="content-wrapper">
+        <div class="main-content">
+            <div class="thumbnail-grid">
+                <figure>
+                    <a href="page1.html">
+                        <img src="/MazeQuizCorp/src/page1 thumbnail.png" alt="Thumbnail 1">
+                    </a>
+                    <figcaption>Tetris: Beyond the Blocks</figcaption>
+                </figure>
+                <figure>
+                    <a href="page2.html">
+                        <img src="/MazeQuizCorp/src/page2 thumbnail.jpeg" alt="Thumbnail 2">
+                    </a>
+                    <figcaption>Movies and Paintings</figcaption>
+                </figure>
+                <figure>
+                    <a href="https://medium.com/@Mazequizzing/accidental-renascence-f08bd2b8cbd1">
+                        <img src="/MazeQuizCorp/src/page3 thumbnail.jpg" alt="Thumbnail 3">
+                    </a>
+                    <figcaption>Accidental Renaissance</figcaption>
+                </figure>
+                <figure>
+                    <a href="https://medium.com/@Mazequizzing/how-a-soda-giant-became-the-6th-largest-military-power-the-unusual-rise-of-pepsi-9b456e41cf7c">
+                        <img src="/MazeQuizCorp/src/page4 thumbnail.jpg" alt="Thumbnail 4">
+                    </a>
+                    <figcaption>How a Soda Giant Became the 6th Largest Military Power</figcaption>
+                </figure>
+                <figure>
+                    <a href="https://medium.com/@Mazequizzing/the-new-beginning-6651db5ba978">
+                        <img src="/MazeQuizCorp/src/page5 thumbnail.jpg" alt="Thumbnail 5">
+                    </a>
+                    <figcaption>The Digital Metamorphosis</figcaption>
+                </figure>
+                <figure>
+                    <a href="https://medium.com/@Mazequizzing/deeply-unsettling-asymmetric-patterns-in-mathematics-optimal-packing-of-17-squares-0171a792f165">
+                        <img src="/MazeQuizCorp/src/page6 thumbnail.jpg" alt="Thumbnail 6">
+                    </a>
+                    <figcaption>Deeply Unsettling Asymmetric Patterns in Mathematics</figcaption>
+                </figure>
+            </div>
 
-    <div class="thumbnail-grid more-content" id="more-content">
-        <figure>
-            <a href="page7.html" target="_blank">
-                <img src="/MazeQuizCorp/src/page7 thumbnail.jpg" alt="Thumbnail 7">
-            </a>
-            <figcaption>The Simpson's Paradox</figcaption>
-        </figure>
-        <figure>
-            <a href="https://medium.com/@Mazequizzing/batman-101-how-to-become-batman-a11c4183d096" target="_blank">
-                <img src="/MazeQuizCorp/src/page8 thumbnail.jpg" alt="Thumbnail 8">
-            </a>
-            <figcaption>Batman 101</figcaption>
-        </figure>
-        <figure>
-            <a href="page9.html" target="_blank">
-                <img src="/MazeQuizCorp/src/page9 thumbnail.png" alt="Thumbnail 9">
-            </a>
-            <figcaption>Microsoft's Genius marketing ploy</figcaption>
-        </figure>
-    </div>
+            <div class="thumbnail-grid more-content" id="more-content">
+                <figure>
+                    <a href="page7.html" target="_blank">
+                        <img src="/MazeQuizCorp/src/page7 thumbnail.jpg" alt="Thumbnail 7">
+                    </a>
+                    <figcaption>The Simpson's Paradox</figcaption>
+                </figure>
+                <figure>
+                    <a href="https://medium.com/@Mazequizzing/batman-101-how-to-become-batman-a11c4183d096" target="_blank">
+                        <img src="/MazeQuizCorp/src/page8 thumbnail.jpg" alt="Thumbnail 8">
+                    </a>
+                    <figcaption>Batman 101</figcaption>
+                </figure>
+                <figure>
+                    <a href="page9.html" target="_blank">
+                        <img src="/MazeQuizCorp/src/page9 thumbnail.png" alt="Thumbnail 9">
+                    </a>
+                    <figcaption>Microsoft's Genius marketing ploy</figcaption>
+                </figure>
+            </div>
 
-    <!-- Button container -->
-    <div id="button-container">
-        <div style="display: flex; gap: 20px;">
-            <button class="button-50" id="show-more-btn" onclick="toggleMoreContent()">Show More</button>
-            <button class="button-50" onclick="window.location.href='index.html'">About Us</button>
+            <div id="button-container">
+                <button class="button-50" id="show-more-btn" onclick="toggleMoreContent()">Show More</button>
+                <button class="button-50" onclick="window.location.href='index.html'">About Us</button>
+            </div>
         </div>
+
+        <aside class="subscription-box">
+            <h2>Subscribe to Our Magazine</h2>
+            <p>Get exclusive access to our latest stories, features, and in-depth analysis delivered straight to your inbox.</p>
+            <form class="subscription-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="button-50">Subscribe</button>
+                <button type="button" class="button-50" onclick="window.location.href='magazine.html'">View Magazine</button>
+            </form>
+        </aside>
     </div>
-    <br /><br />
 
     <footer>
-        &copy;  Maze Quiz Corp
+        &copy; Maze Quiz Corp
     </footer>
 
     <script>
-        // Toggle the display of more content
         function toggleMoreContent() {
             var moreContent = document.getElementById('more-content');
             var button = document.getElementById('show-more-btn');
             if (moreContent.style.display === 'none' || moreContent.style.display === '') {
-                moreContent.style.display = 'grid'; // Changed to grid for layout
+                moreContent.style.display = 'grid';
                 button.textContent = 'Show Less';
             } else {
                 moreContent.style.display = 'none';
