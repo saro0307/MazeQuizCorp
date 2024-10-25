@@ -4,28 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maze Quiz Corp</title>
-
-    <!-- Link to Google Font "Playfair Display" for The Washington Post style -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
 
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: #121212;
             color: #e0e0e0;
             transition: background-color 0.3s, color 0.3s;
             font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            overflow-x: hidden;
+            width: 100%;
         }
 
-        /* Header section */
         header {
             text-align: center;
             padding: 60px 20px;
             background-color: #1e1e1e;
+            width: 100%;
         }
 
         h1 {
@@ -33,6 +37,7 @@
             font-size: 48px;
             color: rgb(138, 43, 226);
             margin: 0;
+            word-wrap: break-word;
         }
 
         h3 {
@@ -40,25 +45,29 @@
             font-weight: 400;
             color: #ccc;
             margin-top: 10px;
+            font-size: 20px;
+            padding: 0 10px;
         }
 
-        /* Main content layout */
         .content-wrapper {
             display: flex;
             gap: 40px;
-            padding: 20px;
+            padding: 40px;
             flex: 1;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        /* Grid layout */
         .main-content {
-            flex: 0 0 70%;
+            flex: 1;
+            min-width: 0;
         }
 
         .thumbnail-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
             padding: 20px 0;
         }
 
@@ -68,7 +77,7 @@
             overflow: hidden;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
+            width: 100%;
         }
 
         .thumbnail-grid figure:hover {
@@ -78,9 +87,8 @@
 
         .thumbnail-grid img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
-            border: none;
         }
 
         .thumbnail-grid figcaption {
@@ -89,12 +97,11 @@
             font-family: 'Verdana', sans-serif;
             font-size: 16px;
             color: #e0e0e0;
-            border: none;
+            word-wrap: break-word;
         }
 
-        /* Subscription box */
         .subscription-box {
-            flex: 0 0 25%;
+            flex: 0 0 350px;
             background-color: #1e1e1e;
             padding: 30px;
             border-radius: 10px;
@@ -108,20 +115,18 @@
             color: rgb(138, 43, 226);
             margin-top: 0;
             margin-bottom: 20px;
-        }
-
-        .subscription-box p {
-            margin-bottom: 20px;
-            line-height: 1.6;
+            font-size: 24px;
         }
 
         .subscription-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            width: 100%;
         }
 
         .subscription-form input {
+            width: 100%;
             padding: 12px;
             border: 1px solid #333;
             border-radius: 4px;
@@ -129,72 +134,99 @@
             color: #fff;
         }
 
-        /* Button styles */
         .button-50 {
             appearance: button;
             background-color: #8a2be2;
             border: 1px solid #8a2be2;
             border-radius: 4px;
             box-shadow: #fff 4px 4px 0 0, #8a2be2 4px 4px 0 1px;
-            box-sizing: border-box;
             color: #fff;
             cursor: pointer;
             font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 400;
-            padding: 10px 30px;
+            padding: 12px 30px;
             text-align: center;
             transition: background-color 0.3s, color 0.3s;
-            min-width: 120px;
-        }
-
-        /* Special styling for subscription box buttons */
-        .subscription-form .button-50 {
-            width: 100%;
-            font-size: 14px;
-            padding: 12px 40px;
-        }
-
-        .button-50:focus, .button-50:hover, .button-50:active {
-            box-shadow: #8a2be2 4px 4px 0 0, #fff 4px 4px 0 1px;
+            width: auto;
+            white-space: nowrap;
         }
 
         #button-container {
             display: flex;
             justify-content: center;
-            gap: 18px;
-            margin: 20px 0;
-            padding: 0;
+            gap: 24px;
+            margin: 30px 0;
+            flex-wrap: wrap;
         }
 
-        /* Show More section */
-        .more-content {
-            display: none;
-        }
-
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
             background-color: #1e1e1e;
             color: #ccc;
             font-size: 18px;
-            margin-top: 20px;
             font-family: 'Playfair Display', serif;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                padding: 30px;
+                gap: 30px;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
         }
 
         @media (max-width: 1024px) {
             .content-wrapper {
                 flex-direction: column;
+                padding: 20px;
             }
 
             .subscription-box {
                 position: static;
-                width: auto;
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-wrapper {
+                padding: 15px;
             }
 
-            .main-content {
-                flex: 1;
+            .thumbnail-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            #button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .button-50 {
+                width: 100%;
+                max-width: 200px;
+            }
+
+            header {
+                padding: 40px 15px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h3 {
+                font-size: 18px;
             }
         }
     </style>
@@ -276,6 +308,7 @@
         <aside class="subscription-box">
             <h2>Subscribe to Our Magazine</h2>
             <p>Get exclusive access to our latest stories, features, and in-depth analysis delivered straight to your inbox.</p>
+            <br />
             <form class="subscription-form">
                 <input type="email" placeholder="Enter your email" required>
                 <button type="submit" class="button-50">Subscribe</button>
