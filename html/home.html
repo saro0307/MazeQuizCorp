@@ -71,6 +71,10 @@
             padding: 20px 0;
         }
 
+        .more-content {
+            display: none;
+        }
+
         .thumbnail-grid figure {
             background-color: #1e1e1e;
             border-radius: 10px;
@@ -239,6 +243,7 @@
 
     <div class="content-wrapper">
         <div class="main-content">
+            <!-- Initial grid with 6 items -->
             <div class="thumbnail-grid">
                 <figure>
                     <a href="page1.html">
@@ -278,6 +283,7 @@
                 </figure>
             </div>
 
+            <!-- Additional content (initially hidden) -->
             <div class="thumbnail-grid more-content" id="more-content">
                 <figure>
                     <a href="page7.html" target="_blank">
@@ -322,9 +328,11 @@
     </footer>
 
     <script>
+        // Toggle function for Show More/Show Less
         function toggleMoreContent() {
             var moreContent = document.getElementById('more-content');
             var button = document.getElementById('show-more-btn');
+            
             if (moreContent.style.display === 'none' || moreContent.style.display === '') {
                 moreContent.style.display = 'grid';
                 button.textContent = 'Show Less';
@@ -333,6 +341,11 @@
                 button.textContent = 'Show More';
             }
         }
+
+        // Ensure content is hidden on page load
+        window.onload = function() {
+            document.getElementById('more-content').style.display = 'none';
+        };
     </script>
 </body>
 </html>
