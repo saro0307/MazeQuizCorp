@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Maze Quiz Corp</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
     
     <style>
@@ -11,20 +12,20 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
             background-color: #121212;
             color: #e0e0e0;
-            font-family: 'Arial', sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
             position: relative;
+            line-height: 1.6;
         }
 
-        /* Backdrop styling */
         body::before {
             content: '';
             position: fixed;
@@ -42,13 +43,12 @@
         header {
             text-align: center;
             padding: 60px 20px;
-            background-color: rgba(30, 30, 30, 0.9);
+            background-color: #1e1e1e;
             border-bottom: 2px solid #8a2be2;
             position: relative;
             overflow: hidden;
         }
 
-        /* Header backdrop effect */
         header::before {
             content: '';
             position: absolute;
@@ -71,24 +71,26 @@
             z-index: 1;
         }
 
+        /* Updated header fonts */
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: 48px;
-            color: #8a2be2;
+            color: rgb(138, 43, 226);
             margin-bottom: 15px;
             text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
         }
 
         h3 {
             font-family: 'Verdana', sans-serif;
-            color: #e0e0e0;
+            color: #ccc;
             font-size: 24px;
             margin-bottom: 20px;
+            font-weight: 400;
         }
 
         .emphasis-text {
             color: #8a2be2;
-            font-weight: bold;
+            font-weight: 600;
             text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
         }
 
@@ -127,39 +129,36 @@
             box-shadow: 0 8px 24px rgba(138, 43, 226, 0.2);
         }
 
-        /* Updated button styling to match home page */
-        .button-50 {
-            appearance: button;
+        .button-74 {
             background-color: #8a2be2;
-            border: 1px solid #8a2be2;
-            border-radius: 4px;
-            box-shadow: #fff 4px 4px 0 0, #8a2be2 4px 4px 0 1px;
+            border: 2px solid #8a2be2;
+            border-radius: 30px;
             color: #fff;
             cursor: pointer;
-            font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
-            font-size: 14px;
-            font-weight: 400;
+            font-size: 16px;
+            font-weight: 600;
             padding: 12px 30px;
             text-align: center;
             text-decoration: none;
-            transition: all 200ms;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
             display: inline-block;
             margin: 10px 5px;
+            will-change: transform;
+            box-shadow: rgba(138, 43, 226, 0.25) 0 8px 15px;
         }
 
-        .button-50:hover {
+        .button-74:hover {
+            box-shadow: rgba(138, 43, 226, 0.35) 0 8px 15px;
+            transform: translateY(-2px);
             background-color: #7624c9;
-            transform: translate(2px, 2px);
-            box-shadow: #fff 2px 2px 0 0, #8a2be2 2px 2px 0 1px;
         }
 
-        .button-50:active {
-            background-color: #8a2be2;
-            box-shadow: #fff 2px 2px 0 0, #8a2be2 2px 2px 0 1px;
-            transform: translate(2px, 2px);
+        .button-74:active {
+            box-shadow: none;
+            transform: translateY(0);
         }
 
         .social-links {
@@ -168,35 +167,30 @@
         }
 
         .social-links a {
-            color: #3cb371;
+            color: #8a2be2;
             text-decoration: none;
             margin: 0 15px;
             font-size: 16px;
             transition: color 0.3s;
+            font-weight: 500;
         }
 
         .social-links a:hover {
-            color: #4cd987;
+            color: #7624c9;
+            text-decoration: underline;
         }
 
-        /* Updated footer to match home page */
+        /* Updated footer */
         footer {
             text-align: center;
             padding: 20px;
-            background-color: #292929;
+            background-color: #1e1e1e;
+            color: #ccc;
+            font-size: 18px;
+            font-family: 'Playfair Display', serif;
+            width: 100%;
             margin-top: auto;
-            border-radius: 10px;
-        }
-
-        footer a {
-            color: #8a2be2;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #ffdf00;
+            border-top: 2px solid #8a2be2;
         }
 
         @media (max-width: 768px) {
@@ -221,9 +215,9 @@
                 grid-template-columns: 1fr;
             }
 
-            .button-50 {
+            .button-74 {
                 padding: 10px 20px;
-                font-size: 13px;
+                font-size: 14px;
             }
         }
     </style>
@@ -233,8 +227,8 @@
         <h1>Maze Quiz Corp</h1>
         <h3>Fostering Knowledge Through Interactive Learning</h3>
         <div>
-            <a href="quiz.html" class="button-50">Book a Quiz</a>
-            <a href="home.html" class="button-50">Back to Home</a>
+            <a href="quiz.html" class="button-74">Book a Quiz</a>
+            <a href="home.html" class="button-74">Head to Stories</a>
         </div>
     </header>
 
@@ -263,17 +257,22 @@
         <div class="mission-section">
             <h3>Support Our Cause</h3>
             <p>Help us continue our mission of spreading education through interactive learning.</p>
-            <a href="https://buymeacoffee.com/saro0307" target="_blank" class="button-50">Support Us</a>
+            <a href="https://buymeacoffee.com/saro0307" target="_blank" class="button-74">Donate</a>
         </div>
 
         <div class="social-links">
-            <a href="https://www.instagram.com/mazequizcorp" target="_blank">Follow us on Instagram</a>
-            <a href="contact.html">Contact Us</a>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            <a href="https://www.instagram.com/mazequizcorp" target="_blank">
+            <i class="fab fa-instagram"></i> Follow us on Instagram</a>
+            <a href="mailto:mazequizzing@gmail.com">
+            <i class="fas fa-envelope"></i> mazequizzing@gmail.com</a>
+            <a href="contact.html">
+            <i class="fas fa-address-book"></i> Contact Us</a>
         </div>
     </div>
 
     <footer>
-        <p><a href="https://bento.me/saravana-kumar" target="_blank">&copy; Barry Allen 2024</a></p>
+        &copy; Maze Quiz Corp
     </footer>
 </body>
 </html>
