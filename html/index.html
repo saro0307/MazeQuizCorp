@@ -1,117 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze Quiz Corp Blogs</title>
+    <title>About Us - Maze Quiz Corp</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
+    
     <style>
-        /* Reset some basic styles */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
+            background-color: #121212;
+            color: #e0e0e0;
             font-family: 'Arial', sans-serif;
-            background-color: #1e1e1e; /* Dark background */
-            color: #e0e0e0; /* Light text for contrast */
-            line-height: 1.6;
-            margin: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Backdrop styling */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: rgba(30, 30, 30, 0.9);
+            border-bottom: 2px solid #8a2be2;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header backdrop effect */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        header > * {
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
-            color: #8a2be2; /* Purple for main title */
-            text-align: center;
-            font-family: 'Georgia', serif;
-        }
-
-        h4 {
-            color: #e0e0e0;
-            font-family: 'Verdana', sans-serif;
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background: #8a2be2;
-            margin: 20px 0;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            font-size: 18px;
-        }
-
-        ul {
-            margin: 20px 0;
-            padding-left: 20px;
-        }
-
-        ul li {
-            font-size: 18px;
-            list-style-type: circle;
-            margin: 5px 0;
-        }
-
-        a {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
             color: #8a2be2;
-            text-decoration: none;
-            transition: color 0.3s ease;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
         }
 
-        a:hover {
-            color: #ffdf00;
-        }
-
-        div {
+        h3 {
+            font-family: 'Verdana', sans-serif;
+            color: #e0e0e0;
+            font-size: 24px;
             margin-bottom: 20px;
         }
 
-        button {
-            background-color: #8a2be2;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+        .emphasis-text {
+            color: #8a2be2;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
         }
 
-        button:hover {
-            background-color: #ffdf00;
+        .content-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(138, 43, 226, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        /* Instagram link styling */
-        .social-link {
-            color: #3cb371;
-            font-size: 18px;
-            margin-bottom: 20px;
+        .mission-section {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        .social-link:hover {
-            color: #00ff00;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
         }
 
-        /* Support section styling */
-        .support {
-            background-color: #333;
-            padding: 20px;
+        .feature-card {
+            background-color: rgba(40, 40, 40, 0.9);
+            padding: 30px;
             border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .support h4 {
-            margin-bottom: 10px;
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(138, 43, 226, 0.2);
         }
 
-        /* Footer */
+        /* Updated button styling to match home page */
+        .button-50 {
+            appearance: button;
+            background-color: #8a2be2;
+            border: 1px solid #8a2be2;
+            border-radius: 4px;
+            box-shadow: #fff 4px 4px 0 0, #8a2be2 4px 4px 0 1px;
+            color: #fff;
+            cursor: pointer;
+            font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 12px 30px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 200ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            display: inline-block;
+            margin: 10px 5px;
+        }
+
+        .button-50:hover {
+            background-color: #7624c9;
+            transform: translate(2px, 2px);
+            box-shadow: #fff 2px 2px 0 0, #8a2be2 2px 2px 0 1px;
+        }
+
+        .button-50:active {
+            background-color: #8a2be2;
+            box-shadow: #fff 2px 2px 0 0, #8a2be2 2px 2px 0 1px;
+            transform: translate(2px, 2px);
+        }
+
+        .social-links {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .social-links a {
+            color: #3cb371;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4cd987;
+        }
+
+        /* Updated footer to match home page */
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding: 20px 0;
+            padding: 20px;
             background-color: #292929;
+            margin-top: auto;
             border-radius: 10px;
         }
 
@@ -119,73 +192,88 @@
             color: #8a2be2;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s;
         }
 
         footer a:hover {
             color: #ffdf00;
         }
 
-        /* Media queries for responsiveness */
-        @media (max-width: 600px) {
-            body {
-                margin: 10px;
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 20px;
             }
 
             h1 {
-                font-size: 24px;
+                font-size: 36px;
             }
 
-            p,
-            ul li,
-            a,
-            button {
-                font-size: 16px;
+            h3 {
+                font-size: 20px;
+            }
+
+            .content-section {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-50 {
+                padding: 10px 20px;
+                font-size: 13px;
             }
         }
     </style>
 </head>
-
 <body>
+    <header>
+        <h1>Maze Quiz Corp</h1>
+        <h3>Fostering Knowledge Through Interactive Learning</h3>
+        <div>
+            <a href="quiz.html" class="button-50">Book a Quiz</a>
+            <a href="home.html" class="button-50">Back to Home</a>
+        </div>
+    </header>
 
-    <h1>Maze Quiz Corp</h1>
-    <hr>
+    <div class="content-section">
+        <div class="mission-section">
+            <h3>Our Mission</h3>
+            <p>At <span class="emphasis-text">Maze Quiz Corp</span>, we believe in making education engaging and accessible. 
+            Our mission is to spark curiosity and foster learning through interactive quiz competitions.</p>
+        </div>
 
-    <h3>Welcome to Maze Quiz Corp</h3>
-    
-    <p>This is a non-profit organization that promotes spreading education among youthsand working professionals.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Quiz Competitions</h3>
+                <p>We organize engaging quiz competitions tailored for schools, colleges, and corporate events.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Educational Impact</h3>
+                <p>Our quizzes are designed to promote critical thinking and expand knowledge horizons.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Community Focus</h3>
+                <p>As a non-profit organization, we're committed to serving our community through educational initiatives.</p>
+            </div>
+        </div>
 
-    <div><strong><h3>What we do?</h3></strong></div>
-    <ul>
-        <li>Quiz Competitions</li>
-        <ul>We host quiz based on demands by colleges, schools and other public or private entities</ul>
+        <div class="mission-section">
+            <h3>Support Our Cause</h3>
+            <p>Help us continue our mission of spreading education through interactive learning.</p>
+            <a href="https://buymeacoffee.com/saro0307" target="_blank" class="button-50">Support Us</a>
+        </div>
 
-    </ul>
-
-    <div>
-        <span><a href="quiz.html">Book a Quiz</a></span> | 
-        <span><a href="contact.html">Contact Us</a></span>
-    </div>
-
-    <div>
-        <strong>Visit Maze Quizzing on:</strong> <a class="social-link"
-            href="https://www.instagram.com/mazequizcorp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw"
-            target="_blank">Instagram</a>
-    </div>
-
-    <div class="support">
-        <h4>Support Us</h4>
-        <p>You can help us with small contributions. Thank you!</p>
-        <a href="https://buymeacoffee.com/saro0307" target="_blank">Donate Now</a>
-    </div>
-
-    <div>
-        <button onclick="window.location.href= 'home.html'; window.close();">Back to homepage</button>
+        <div class="social-links">
+            <a href="https://www.instagram.com/mazequizcorp" target="_blank">Follow us on Instagram</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
     </div>
 
     <footer>
         <p><a href="https://bento.me/saravana-kumar" target="_blank">&copy; Barry Allen 2024</a></p>
     </footer>
-
 </body>
-
 </html>
