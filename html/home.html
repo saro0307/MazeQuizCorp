@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -127,6 +128,7 @@
             flex-direction: column;
             gap: 15px;
             width: 100%;
+            position: relative;
         }
 
         .subscription-form input {
@@ -154,6 +156,54 @@
             transition: background-color 0.3s, color 0.3s;
             width: auto;
             white-space: nowrap;
+        }
+
+        /* New subscription message styles */
+        .subscription-message {
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .subscription-message.success {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #2ecc71;
+            border: 1px solid #2ecc71;
+        }
+
+        .subscription-message.error {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #ff6b6b;
+            border: 1px solid #ff6b6b;
+        }
+
+        .subscription-form button[type="submit"].loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .subscription-form button[type="submit"].loading::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
 
         #button-container {
@@ -328,10 +378,10 @@
     </footer>
 
     <script>
-        // Toggle function for Show More/Show Less
+        // Function to toggle More/Less content
         function toggleMoreContent() {
-            var moreContent = document.getElementById('more-content');
-            var button = document.getElementById('show-more-btn');
+            const moreContent = document.getElementById('more-content');
+            const button = document.getElementById('show-more-btn');
             
             if (moreContent.style.display === 'none' || moreContent.style.display === '') {
                 moreContent.style.display = 'grid';
@@ -341,11 +391,153 @@
                 button.textContent = 'Show More';
             }
         }
-
-        // Ensure content is hidden on page load
-        window.onload = function() {
+        
+        // Subscription form handling
+        const subscriptionForm = document.querySelector('.subscription-form');
+        const emailInput = subscriptionForm.querySelector('input[type="email"]');
+        
+        // Function to show messages
+        function showMessage(message, type) {
+            // Remove any existing message
+            const existingMessage = document.querySelector('.subscription-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Create and show new message
+            const messageElement = document.createElement('div');
+            messageElement.className = `subscription-message ${type}`;
+            messageElement.textContent = message;
+            subscriptionForm.appendChild(messageElement);
+            
+            // Remove message after 5 seconds
+            setTimeout(() => {
+                messageElement.remove();
+            }, 5000);
+        }
+        
+        // Function to validate email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Function to handle form submission
+        async function handleSubscription(email) {
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    return {
+                        success: true,
+                        message: 'Successfully subscribed! Please check your email for confirmation.'
+                    };
+                } else {
+                    return {
+                        success: false,
+                        message: data.message || 'Subscription failed. Please try again.'
+                    };
+                }
+            } catch (error) {
+                return {
+                    success: false,
+                    message: 'An error occurred. Please try again later.'
+                };
+            }
+        }
+        
+        // Form submission event listener
+        subscriptionForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const submitButton = subscriptionForm.querySelector('button[type="submit"]');
+            
+            // Validate email
+            if (!isValidEmail(email)) {
+                showMessage('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Add loading state
+            submitButton.classList.add('loading');
+            submitButton.disabled = true;
+            
+            // Handle subscription
+            const result = await handleSubscription(email);
+            
+            // Remove loading state
+            submitButton.classList.remove('loading');
+            submitButton.disabled = false;
+            
+            // Show appropriate message
+            showMessage(result.message, result.success ? 'success' : 'error');
+            
+            // Clear input on success
+            if (result.success) {
+                emailInput.value = '';
+            }
+        });
+        
+        // Local storage for subscription status
+        function checkSubscriptionStatus() {
+            return localStorage.getItem('subscribed') === 'true';
+        }
+        
+        function setSubscriptionStatus() {
+            localStorage.setItem('subscribed', 'true');
+        }
+        
+        // Handle subscription status on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide more content on initial load
             document.getElementById('more-content').style.display = 'none';
-        };
-    </script>
-</body>
-</html>
+            
+            // Disable form if already subscribed
+            if (checkSubscriptionStatus()) {
+                emailInput.disabled = true;
+                subscriptionForm.querySelector('button[type="submit"]').disabled = true;
+                showMessage('You are already subscribed!', 'success');
+            }
+        });
+        
+        // Add input validation while typing
+        emailInput.addEventListener('input', (e) => {
+            const email = e.target.value.trim();
+            if (email && !isValidEmail(email)) {
+                emailInput.style.borderColor = '#ff6b6b';
+            } else {
+                emailInput.style.borderColor = '#333';
+            }
+        });
+        
+        // Prevent multiple form submissions
+        let isSubmitting = false;
+        subscriptionForm.addEventListener('submit', (e) => {
+            if (isSubmitting) {
+                e.preventDefault();
+                return;
+            }
+            isSubmitting = true;
+            setTimeout(() => {
+                isSubmitting = false;
+            }, 2000); // Prevent submissions for 2 seconds
+        });
+        
+        // Add keyboard accessibility
+        document.getElementById('show-more-btn').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMoreContent();
+            }
+        });
+        </script>
+        
