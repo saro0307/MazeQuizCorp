@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS # type: ignore
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import smtplib
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 import re
 
 # Load environment variables
