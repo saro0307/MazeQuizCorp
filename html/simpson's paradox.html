@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Simpson's Paradox in Machine Learning</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+        /* Global Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 {
+            color: #ffffff;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Image Styling */
+        header img {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            border-radius: 10px;
+            border: 2px solid #333;
+        }
+
+        /* Main Layout */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e;
+            color: #ccc;
+            font-size: 18px;
+            margin-top: 20px;
+            font-family: 'Playfair Display', serif; /* Added font family */
+        }
+
+        /* Code Block */
+        code {
+            background-color: #1f1f1f;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #bb86fc;
+        }
+        
+        /* Quote Block */
+        blockquote {
+            border-left: 4px solid #bb86fc;
+            padding-left: 10px;
+            margin: 20px 0;
+            color: #b0b0b0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <h1>The Simpson's Paradox in Machine Learning</h1>
+
+        <header>
+            <img src="/MazeQuizCorp/src/page7.jpg" alt="Simpson's Paradox Image">
+        </header>
+
+        <h2>Understanding Simpson's Paradox</h2>
+        <p>Simpson's Paradox is a statistical phenomenon where trends that appear in different groups of data disappear or reverse when the groups are combined. This paradox can easily mislead conclusions, making it particularly problematic for machine learning models.</p>
+
+        <p>The classic example involves medical studies, where a treatment might seem effective within each subgroup (e.g., mild and severe cases) but shows the opposite result when the data from both groups is combined. This happens because an unobserved variable (called a confounder) affects the results, masking the true relationship between variables.</p>
+
+        <blockquote>
+            “In machine learning, Simpson's Paradox can lead to biased models if underlying patterns are hidden by aggregated data.”
+        </blockquote>
+
+        <h2>Machine Learning Impact</h2>
+        <p>Simpson's Paradox can influence machine learning in several ways:</p>
+        <ul>
+            <li><strong>Data Aggregation:</strong> Combining data from different sources or groups without considering the underlying factors can lead to flawed models.</li>
+            <li><strong>Feature Selection:</strong> A feature that appears important in a combined dataset may lose its significance when analyzed within specific subgroups.</li>
+            <li><strong>Bias and Fairness:</strong> Aggregated data may introduce bias, leading to unfair model predictions, particularly in sensitive areas like hiring or lending.</li>
+        </ul>
+
+        <h2>How to Mitigate Simpson's Paradox</h2>
+        <p>To reduce the risk of Simpson's Paradox in machine learning:</p>
+        <ul>
+            <li><strong>Subgroup Analysis:</strong> Always perform exploratory data analysis (EDA) on subgroups to identify patterns that might be hidden in the aggregated data.</li>
+            <li><strong>Stratified Sampling:</strong> Ensure that subgroups are well-represented in the training data, preventing over-representation of one group.</li>
+            <li><strong>Incorporate Confounders:</strong> Include relevant confounders as features in the model to capture the true relationships between variables.</li>
+            <li><strong>Model Evaluation:</strong> Evaluate model performance on different subgroups, ensuring consistency and fairness.</li>
+        </ul>
+
+        <h3>Conclusion</h3>
+        <p>Simpson's Paradox can have a significant impact on machine learning, leading to biased or misleading models. By identifying and accounting for confounding variables, machine learning practitioners can mitigate the effects of the paradox, resulting in more accurate and fair models.</p>
+    </div>
+
+    <footer>
+        &copy; 2024 Maze Quiz Corp
+    </footer>
+
+</body>
+</html>
