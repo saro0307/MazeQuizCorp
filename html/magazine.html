@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maze Quiz Corp - PDF Previews</title>
-
-    <!-- Link to Google Font "Playfair Display" for The Washington Post style -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
-
     <style>
         body {
             background-color: #121212;
@@ -17,7 +14,70 @@
             padding: 0;
         }
 
-        /* Header section */
+        /* Modal Popup Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #1e1e1e;
+            margin: 15% auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            text-align: center;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal h2 {
+            color: #8a2be2;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .modal p {
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .close-button {
+            background-color: #8a2be2;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background-color: #7424c0;
+        }
+
+        /* Existing styles */
         header {
             text-align: center;
             padding: 60px 20px;
@@ -38,10 +98,9 @@
             margin-top: 10px;
         }
 
-        /* Grid layout for PDFs */
         .pdf-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two by two grid */
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             padding: 40px;
             max-width: 1200px;
@@ -58,7 +117,7 @@
 
         .pdf-item img {
             width: 100%;
-            aspect-ratio: 4 / 5; /* Set aspect ratio to 4:5 */
+            aspect-ratio: 4 / 5;
             object-fit: cover;
             border-radius: 10px;
         }
@@ -69,11 +128,6 @@
             margin: 20px 0 10px;
         }
 
-        .pdf-item button {
-            margin-top: 20px;
-        }
-
-        /* Button styling */
         .button-50 {
             appearance: button;
             background-color: #8a2be2;
@@ -95,15 +149,27 @@
             box-shadow: #8a2be2 4px 4px 0 0, #fff 4px 4px 0 1px;
         }
 
-        /* Responsive layout */
         @media (max-width: 768px) {
             .pdf-grid {
-                grid-template-columns: 1fr; /* Stacks in one column on smaller screens */
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                width: 90%;
+                margin: 30% auto;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Modal Popup -->
+    <div id="startDateModal" class="modal">
+        <div class="modal-content">
+            <h2>Coming Soon!</h2>
+            <p>This service is scheduled to start from Jan 2025.</p>
+            <button class="close-button" onclick="closeModal()">Got it!</button>
+        </div>
+    </div>
+
     <header>
         <h1>Maze Quiz Corp</h1>
         <h3>Explore fun trivia & the latest stories from around the world</h3>
@@ -113,8 +179,8 @@
         <!-- PDF Item 1 -->
         <div class="pdf-item">
             <h2>Sample PDF 1</h2>
-            <a href="/MazeQuizCorp/src/magazine/magazine pdf/Untitled.pdf" target="_blank">
-                <img src="/MazeQuizCorp/src/magazine/thumbnails/ana-de-armas.jpg" alt="PDF 1 Thumbnail">
+            <a href="/MazeQuizCorp/src/magazine/thumbnails/cs.png" target="_blank">
+                <img src="/MazeQuizCorp/src/magazine/thumbnails/cs.png" alt="PDF 1 Thumbnail">
             </a>
             <button class="button-50" onclick="downloadPDF('path/to/sample1.pdf')">Download PDF</button>
         </div>
@@ -122,8 +188,8 @@
         <!-- PDF Item 2 -->
         <div class="pdf-item">
             <h2>Sample PDF 2</h2>
-            <a href="/MazeQuizCorp/src/magazine/magazine pdf/my_resume CTS.pdf" target="_blank">
-                <img src="/MazeQuizCorp/src/magazine/thumbnails/ana-de-armas.jpg" alt="PDF 2 Thumbnail">
+            <a href="/MazeQuizCorp/src/magazine/thumbnails/cs.png" target="_blank">
+                <img src="/MazeQuizCorp/src/magazine/thumbnails/cs.png" alt="PDF 2 Thumbnail">
             </a>
             <button class="button-50" onclick="downloadPDF('path/to/sample2.pdf')">Download PDF</button>
         </div>
@@ -131,8 +197,8 @@
         <!-- PDF Item 3 -->
         <div class="pdf-item">
             <h2>Sample PDF 3</h2>
-            <a href="/MazeQuizCorp/src/magazine/magazine pdf/my_resume CTS.pdf" target="_blank">
-                <img src="/MazeQuizCorp/src/magazine/thumbnails/ana-de-armas 1.jpg" alt="PDF 3 Thumbnail">
+            <a href="/MazeQuizCorp/src/magazine/thumbnails/cs.png" target="_blank">
+                <img src="/MazeQuizCorp/src/magazine/thumbnails/cs.png" alt="PDF 3 Thumbnail">
             </a>
             <button class="button-50" onclick="downloadPDF('path/to/sample3.pdf')">Download PDF</button>
         </div>
@@ -140,14 +206,24 @@
         <!-- PDF Item 4 -->
         <div class="pdf-item">
             <h2>Sample PDF 4</h2>
-            <a href="/MazeQuizCorp/src/magazine/magazine pdf/my_resume CTS.pdf" target="_blank">
-                <img src="/MazeQuizCorp/src/magazine/thumbnails/ana-de-armas 1.jpg" alt="PDF 4 Thumbnail">
+            <a href="/MazeQuizCorp/src/magazine/thumbnails/cs.png" target="_blank">
+                <img src="/MazeQuizCorp/src/magazine/thumbnails/cs.png" alt="PDF 4 Thumbnail">
             </a>
             <button class="button-50" onclick="downloadPDF('path/to/sample4.pdf')">Download PDF</button>
         </div>
     </div>
 
     <script>
+        // Show modal when page loads
+        window.onload = function() {
+            document.getElementById('startDateModal').style.display = 'block';
+        }
+
+        // Close modal function
+        function closeModal() {
+            document.getElementById('startDateModal').style.display = 'none';
+        }
+
         function downloadPDF(pdfPath) {
             const link = document.createElement('a');
             link.href = pdfPath;
